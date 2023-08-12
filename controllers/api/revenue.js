@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const incomeData = findOne({
+        const findIncome = findOne({
             attributes: [
                 'id',
                 'income_name',
@@ -55,7 +55,7 @@ router.get('/:id', async (req, res) => {
             }
         ],
         });
-        res.json(incomeData);
+        res.json(findIncome);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -64,8 +64,16 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        
+        const createIncome = await Income.create({
+            income_name: req.params.income_name,
+            description: req.params.description,
+            amount: req.params.amount,
+            category: req.params.category,
+            user_income_id: req.params.user_income_name
+        });
+        res.json(createIncome);
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 
@@ -73,7 +81,13 @@ router.post('/', async (req, res) => {
 
 router.put('/', async (req, res) => {
     try {
-        
+        const updateIncome = await Income.update({
+            income_name: req.params.income_name,
+            description: req.params.description,
+            amount: req.params.amount,
+            category: req.params.category
+        });
+        res.json(updateIncome);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -81,10 +95,19 @@ router.put('/', async (req, res) => {
 })
 
 router.delete('/', async (req, res) => {
-    try {
-        
+    try { 
+        const deleteIncome = await Income.destroy({
+            where: {
+                id: req.params.id
+            },
+        });
+        if (!deleteIncome) {
+            res.status(400).json({ message: 'No income with that id'})
+          }
     } catch (err) {
-        res.status(500).json(err);
+        res.status(500).json('Error in finding income');
     }
 
 })
+
+module.exports = router;
