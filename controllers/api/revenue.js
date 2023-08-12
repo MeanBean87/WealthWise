@@ -7,9 +7,23 @@ router.get('/', async (req, res) => {
             attributes: [
                 'id',
                 'income_name',
-                ''
-            ]
-        })
+                'user_income_id',
+                'amount',
+                'description',
+                'category',
+                'date'
+            ],
+            include: [
+                {
+                model: User,
+                attributes: [
+                    'id',
+                    'username'
+                ]
+            }
+        ],
+        });
+        res.json(incomeData);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -18,7 +32,30 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        
+        const incomeData = findOne({
+            attributes: [
+                'id',
+                'income_name',
+                'user_income_id',
+                'amount',
+                'description',
+                'category',
+                'date'
+            ],
+            where: {
+                id: req.params.id
+            },
+            include: [
+                {
+                model: User,
+                attributes: [
+                    'id',
+                    'username'
+                ]
+            }
+        ],
+        });
+        res.json(incomeData);
     } catch (err) {
         res.status(500).json(err);
     }
