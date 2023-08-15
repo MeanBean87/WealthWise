@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+ 
+  <body>
+    <div class="d-flex flex-row mb-12">
+      <div class="d-flex flex-column mb-4">
+        <div class="card border-0 m-6"> 
+          <div class="card-body m-6">
+            <canvas
+              id="myChart1"
+              style="width: 60%; max-width: 300px"
+            ></canvas>
+            <script>
+              var xValues = [
+                "category 1",
+                "category 2",
+                "category 3",
+                "category 4",
+                "category 5",
+              ]; //req.body.category
+              var yValues = [123, 123, 444, 222, 111]; //req.body.monthlyexpense
+              var barColors = [
+                "#b18dff",
+                "#f8acff",
+                "#5c7aff",
+                "#f5f4e5",
+                "#101010",
+              ];
+
+              new Chart("myChart1", {
+                type: "pie",
+                data: {
+                  labels: xValues,
+                  datasets: [
+                    {
+                      backgroundColor: barColors,
+                      data: yValues,
+                    },
+                  ],
+                },
+                options: {
+                  title: {
+                    display: true,
+                    text: "Monthly Expense (%)",
+                  },
+                },
+              });
+            </script>
+          </div>
+        </div>
+
+        <div class="card border-0 m-6">
+          <div class="card-body">
+            <canvas
+              id="myChart2"
+              style="width: 100%; max-width: 600px"
+            ></canvas>
+            <script>
+              var xValues = [
+                "category 1",
+                "category 2",
+                "category 3",
+                "category 4",
+                "category 5",
+              ]; //req.body.category
+              var yValues = [123, 123, 444, 222, 111]; //req.body.monthlyexpense
+              var barColors = [
+                "#b18dff",
+                "#f8acff",
+                "#5c7aff",
+                "#f5f4e5",
+                "#101010",
+              ];
+
+              new Chart("myChart2", {
+                type: "pie",
+                data: {
+                  labels: xValues,
+                  datasets: [
+                    {
+                      backgroundColor: barColors,
+                      data: yValues,
+                    },
+                  ],
+                },
+                options: {
+                  title: {
+                    display: true,
+                    text: "Monthly Revenue (%)",
+                  },
+                },
+              });
+            </script>
+           </div>
+          </div>
+        </div>
+      
+
+
+      <div class="d-flex flex-column mb-8">
+        <div class="card border-0 h-75">
+          <div class = "card-body">
+          <canvas id="myChart3" style="width: 100%; max-width: 600px" class = "h-100"></canvas>
+          <script>
+            var xValues = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
+            var yValues = [7, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15];
+            new Chart("myChart3", {
+              type: "line",
+              data: {
+                labels: xValues,
+                datasets: [
+                  {
+                    backgroundColor: "#b18dff",
+                    borderColor: "#b18dff",
+                    data: yValues,
+                    fill: false,
+                    label: "Net Assets: $",
+                  },
+                ],
+              },
+              options: {
+                plugins: {
+                  legend: {
+                    lables: {
+                      position: "right",
+                    },
+                  },
+                },
+                title: {
+                  display: true,
+                  text: "Net Asset Trend (%)",
+                },
+              },
+            });
+          </script>
+          </div>
+        </div>
+
+        <div class="card border-0 h-25">
+          <div class="card-title">Insights</div>
+          <div class="card-body">  
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </body>
+</html>
