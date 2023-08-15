@@ -3,8 +3,10 @@ const newRevenueAnalysis = async (event) => {
   try {
     if (newRevenue) {
       const response = await fetch("/api/revenue", {
-        method: "GET"
-        body: JSON.stringify({ newRevenue }),
+        method: "GET",
+        body: JSON.stringify({
+             
+         }),
         headers: { "Content-Type": "application/json" },
       });
 
@@ -38,8 +40,15 @@ const newExpenseAnalysis = async (event) => {
     try {
       if (newExpense) {
         const response = await fetch("/api/expense", {
-          method: "GET"
-          body: JSON.stringify({ newExpense }),
+          method: "GET",
+          body: JSON.stringify({
+            amount,
+            category,
+            where:{
+
+            }
+         
+     }),
           headers: { "Content-Type": "application/json" },
         });
   

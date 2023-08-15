@@ -13,6 +13,7 @@ router.use('/expense', expenseRoutes);
 router.use('/create', createBudgetRoutes);
 router.use('/budget', budgetRoutes);
 router.use('/session', sessionRoutes);
+router.use('/analysis', sessionRoutes);
 
 
 module.exports = router;
