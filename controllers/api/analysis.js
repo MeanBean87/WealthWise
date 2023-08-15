@@ -1,30 +1,35 @@
 const router = require("express").Router();
+const sequelize= require ("sequelize")
 const { Model } = require("sequelize");
 const { User, Expense, Income, Budget } = require("../../models");
 const { useAuth } = require("../../utils/auth");
 // for each id, I need expenses by category
-
-router.get('/:id', useAuth, async (req, res) => {
+// to test need to remove useauth
+router.get('/:id', async (req, res) => {
     try {
-        const findCategoryExpense = await Expense.findOne({
-            attributes: [
-                'amount',
-                'category',
-                [sequelize.fn('sum', sequelize.col('amount')), 'total_amount'],
-            ],
-            group:['category','user_budget_id'],
-            where: {
-                user_budget_id: req.params.id,
-            },
-            include: [
-                {
-                model: User,// join with user data model
-                attributes: [
-                    'id',
-                    'username'
-                ]
-            }
-        ],
+        const findCategoryExpense = await Expense.findAll({
+            // attributes: [
+            //     'user_expense_id',
+            //     'category',
+            //     'amount',
+                
+            //     'user'
+                //user table
+                //  [sequelize.fn('SUM', sequelize.col('amount')), 'total_amount'],
+            // ],
+            // group:['category'],
+            // where: {
+            //     user_expense_id: req.params.id,
+            // },
+            // include: [
+            //     {
+            //     model: User,// join with user data model
+                // attributes: [
+                //     'id',
+                //     'username'
+                // ]
+            // }
+        // ],
         });
         console.log(findCategoryExpense);
         res.json(findCategoryExpense);
@@ -35,7 +40,7 @@ router.get('/:id', useAuth, async (req, res) => {
 
 router.get('/:id', useAuth, async (req, res) => {
     try {
-        const findCategoryRevenue = await Income.findOne({
+        const findCategoryRevenue = await Income.findAll({
             attributes: [
                 'amount',
                 'category',
@@ -60,3 +65,5 @@ router.get('/:id', useAuth, async (req, res) => {
     }
 
 });
+
+module.exports = router;

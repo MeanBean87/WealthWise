@@ -5,6 +5,7 @@ const expenseRoutes = require('./expense');
 const createBudgetRoutes = require('../dashboard.js');
 const budgetRoutes = require('./budget');
 const sessionRoutes = require('./session');
+const analysisRoutes = require('./analysis');
 
 
 router.use('/user', userRoutes);
@@ -13,7 +14,7 @@ router.use('/expense', expenseRoutes);
 router.use('/create', createBudgetRoutes);
 router.use('/budget', budgetRoutes);
 router.use('/session', sessionRoutes);
-router.use('/analysis', sessionRoutes);
+router.use('/analysis', analysisRoutes);
 
 
 module.exports = router;
